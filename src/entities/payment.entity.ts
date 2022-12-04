@@ -1,12 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Consumption } from "./consumption.entity";
 
 @Entity()
 export class Payment {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
-    id_consumption : number
+    @OneToOne(() => Consumption)
+    @JoinColumn()
+    consumption : Consumption
 
     @Column('double')
     total : number

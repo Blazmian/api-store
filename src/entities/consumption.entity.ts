@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Client } from "./client.entity";
 
 @Entity()
 export class Consumption {
@@ -9,8 +10,8 @@ export class Consumption {
     date : Date
 
     @Column()
-    consumption : string
+    consumption : number
 
-    @Column()
-    id_client : number
+    @ManyToOne(() => Client, (client) => client.consumption)
+    client : Client
 }
