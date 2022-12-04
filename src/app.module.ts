@@ -1,3 +1,4 @@
+import { PaymentService } from './api/Payment/payment.service';
 import { ConsumptionModule } from './api/Consumption/consumption.module';
 import { ConsumptionController } from './api/Consumption/consumption.controller';
 import { ConsumptionService } from './api/Consumption/consumption.service';
@@ -13,6 +14,7 @@ import { Connection } from './configs/DBConnection';
   imports: [Connection, ConsumptionModule, ClientModule],
   controllers: [AppController],
   providers: [
+    PaymentService,
     ConsumptionService,
     ClientService, AppService],
 })

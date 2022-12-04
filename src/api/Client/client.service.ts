@@ -11,15 +11,18 @@ export class ClientService {
         @InjectRepository(ClientEntity)
         private clientEntity : Repository<ClientEntity>
     ) {}
-    
-    private readonly Clients: Client[] = []
 
     async create( client : IClient ) {
         return await this.clientEntity.insert(client)
     }
 
     async getAll(): Promise<Client[]> {
-        return await this.clientEntity.find()
+        return await this.clientEntity.find({relations: { consumption: true }})
     }
 
+    async getClientById (id_client: number) : Promise<ClientEntity> {
+        return await this.clientEntity.findOne({
+            where: {id: id_client}
+        })
+    }
 }
