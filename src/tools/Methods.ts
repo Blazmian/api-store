@@ -24,10 +24,21 @@ export function validMail(value: any): boolean {
     return isValid
 }
 
-export function validBirthdate (value: any) {
+export function validBirthdate(value: any) {
     let isValid = false
     if (/^(\d{4})(\/|-)(0[1-9]|1[0-2])\2([0-2][0-9]|3[0-1])$/.exec(value)) {
         isValid = true
     }
     return isValid
+}
+
+export function getAge(birth) {
+    let today = new Date()
+    let birthdate = new Date(birth)
+    let age = today.getFullYear() - birthdate.getFullYear()
+    let differenceMonths = today.getMonth() - birthdate.getMonth()
+    if (differenceMonths < 0 || (differenceMonths === 0 && today.getDate() < birthdate.getDate())) {
+        age--
+    }
+    return age
 }

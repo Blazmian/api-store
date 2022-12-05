@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param } from '@nestjs/common';
 import { IClient, Client } from 'src/models/Client';
 import { onlyLetters, onlyNumbers, validBirthdate, validMail } from 'src/tools/Methods';
 import { ClientService } from './client.service';
@@ -45,5 +45,45 @@ export class ClientController {
         } catch (error) {
             return 'Cannot read clients: ' + error
         }        
+    }
+
+    @Get('/:mail')
+    getClient(@Param('mail') params) : Promise<Client> | string {
+        try {
+            const res = this.clientService.getClientByMail(params)
+            return res
+        } catch (error) {
+            return 'Cannot read clients: ' + error
+        }
+    }
+
+    @Get('/stadistics')
+    getClientMoreAndLessConsumption(): Promise<any> | string {
+        try {
+            const res = this.clientService.getClientsStadistics()
+            return res
+        } catch (error) {
+            return 'Cannot read clients: ' + error
+        }
+    }
+
+    @Get('/notpaid')
+    getClientWhoHasNotPaid(): Promise<any> | string {
+        try {
+            const res = this.clientService.getClientNotPaid()
+            return res
+        } catch (error) {
+            return 'Cannot read clients: ' + error
+        }
+    }
+
+    @Get('/paid')
+    getClientWhoPaid(): Promise<any> | string {
+        try {
+            const res = this.clientService.getClientPaid()
+            return res
+        } catch (error) {
+            return 'Cannot read clients: ' + error
+        }
     }
 }

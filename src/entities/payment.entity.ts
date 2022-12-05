@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Consumption } from "./consumption.entity";
 
 @Entity()
@@ -6,8 +6,7 @@ export class Payment {
     @PrimaryGeneratedColumn()
     id: number
 
-    @OneToOne(() => Consumption)
-    @JoinColumn()
+    @ManyToOne(() => Consumption, (consumption) => consumption.payment)
     consumption : Consumption
 
     @Column('double')

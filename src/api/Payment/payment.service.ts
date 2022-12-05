@@ -12,7 +12,8 @@ export class PaymentService {
     async create_payment(id_consumption : Consumption, payment : IPayment) {
         this.paymentEntity.insert({
             consumption : id_consumption,
-            
+            total: payment.total,
+            paid: payment.paid
         })
     }
 }
