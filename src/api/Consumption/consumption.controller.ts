@@ -1,8 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { type } from 'os';
 import { IConsumption } from 'src/models/Consumption';
 import { onlyNumbers } from 'src/tools/Methods';
-import { InsertResult } from 'typeorm';
 import { ConsumptionService } from './consumption.service';
 
 @Controller('consumption')
@@ -15,6 +13,10 @@ export class ConsumptionController {
     Create(@Body() params: IConsumption): Promise<String> | string {
         if (!onlyNumbers(params.consumption)) {
             return "Consumption only accepts numbers"
+        }
+
+        if (!(params.consumption > 0)) {
+            return 'Consumption has to be more than 0'
         }
 
         try {

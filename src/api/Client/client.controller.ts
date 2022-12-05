@@ -47,7 +47,7 @@ export class ClientController {
         }        
     }
 
-    @Get('/:mail')
+    @Get('/one/:mail')
     getClient(@Param('mail') params) : Promise<Client> | string {
         try {
             const res = this.clientService.getClientByMail(params)
