@@ -34,11 +34,11 @@ export class ConsumptionService {
         const cons = consumption.consumption
         var total = 0
         if (cons <= 100) {
-            total = 150
+            total = 150 * cons
         } else if (cons > 100 && cons <= 300) {
-            total = 170
+            total = 170 * cons
         } else {
-            total = 190
+            total = 190 * cons
         }
 
         // Getting the birthdate of the client
