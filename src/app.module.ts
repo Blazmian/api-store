@@ -10,7 +10,7 @@ import { Connection } from './configs/DBConnection';
 import { ConfigModule } from '@nestjs/config'
 
 @Module({
-  imports: [ConfigModule.forRoot({ envFilePath: process.env.NODE_ENV === 'docker' ? '.docker.env' : '.local.env' }),
+  imports: [ConfigModule.forRoot({ envFilePath: process.env.NODE_ENV === 'docker' ? '.env' : '.local.env' }),
     Connection, ConsumptionModule, ClientModule],
   controllers: [AppController],
   providers: [
